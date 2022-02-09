@@ -8,6 +8,10 @@
             name="sender"
             type="com.polotika.tsfbanking.Account" />
 
+        <variable
+            name="vm"
+            type="com.polotika.tsfbanking.TransferViewModel" />
+
     </data>
 
     <ScrollView
@@ -102,6 +106,9 @@
                     android:id="@+id/accounts_tv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:inputType="none"
+                    android:tag="@{sender.id}"
+                    setListener="@{vm.accountsListener}"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>

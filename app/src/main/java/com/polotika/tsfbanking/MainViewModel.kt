@@ -16,9 +16,10 @@ class MainViewModel :ViewModel() {
             for (account:Account in dummyAccounts){
                 db.insertAccount(account)
             }
-            val accounts = db.getAllAccounts()
-            AccountsListAdapter(accounts)
+            AccountsListAdapter(db.getAllAccounts())
         }
+
+        db.close()
     }
 
     private fun getDummyAccounts(): List<Account> {
@@ -28,6 +29,8 @@ class MainViewModel :ViewModel() {
         }
         return accounts
     }
+
+
 
 
 }

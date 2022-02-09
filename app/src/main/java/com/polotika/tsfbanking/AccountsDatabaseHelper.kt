@@ -82,6 +82,26 @@ class AccountsDatabaseHelper(context: Context) :
         return accounts
     }
 
+    fun getAvailableAccountsToTransfer(senderId:Int): List<Account> {
+        val accounts = arrayListOf<Account>()
+        val db: SQLiteDatabase = readableDatabase
+        val cursor: Cursor = db.rawQuery("SELECT * FROM $ACCOUNTS_TABLE_NAME", null)
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("ID"))
+                val name = cursor.getString(cursor.getColumnIndexOrThrow(ACC_COL_NAME))
+                val email = cursor.getString(cursor.getColumnIndexOrThrow(ACC_COL_EMAIL))
+                val balance = cursor.getInt(cursor.getColumnIndexOrThrow(ACC_COL_BALANCE))
+                val account = Account(id, name, email, balance)
+                if (senderId !=id)
+                    accounts.add(account)
+            } while (cursor.moveToNext())
+            cursor.close()
+        }
+
+        return accounts
+    }
+
     fun getAccount(id: Int): Account? {
         val query = "SELECT * FROM $ACCOUNTS_TABLE_NAME WHERE ID =?"
         val db: SQLiteDatabase = readableDatabase
