@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.polotika.tsfbanking.MainViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity"
+        android:background="#FAF8F8">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/accounts_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/account_item"
+            android:orientation="vertical"
+            android:adapter="@{vm.accountsListAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

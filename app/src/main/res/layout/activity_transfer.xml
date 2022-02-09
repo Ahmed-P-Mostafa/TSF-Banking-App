@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="sender"
+            type="com.polotika.tsfbanking.Account" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp"
+            tools:context=".TransferActivity"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/account_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{sender.name}"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@id/account_email_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="User Name"
+                />
+
+            <TextView
+                android:id="@+id/account_email_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{sender.email}"
+                app:layout_constraintBottom_toTopOf="@id/account_balance_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/account_name_tv"
+                android:layout_marginTop="8dp"
+                tools:text="Ahmed_Mostafa@Gmail.com" />
+
+            <TextView
+                android:id="@+id/balance_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Balance:  "
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/account_balance_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/account_balance_tv" />
+
+            <TextView
+                android:id="@+id/account_balance_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{sender.balance + `$`}"
+                android:textColor="#3E8E41"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@id/transfer_label"
+                app:layout_constraintStart_toEndOf="@id/balance_label"
+                app:layout_constraintTop_toBottomOf="@id/account_email_tv"
+                tools:text="1000$" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <TextView
+                android:id="@+id/transfer_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Transfer money to any account below"
+                app:layout_constraintBottom_toTopOf="@id/guideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/accounts_til"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:endIconMode="dropdown_menu"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+
+                <AutoCompleteTextView
+                    android:id="@+id/accounts_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/amount_til"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintWidth_percent="0.5"
+                app:layout_constraintTop_toBottomOf="@id/accounts_til"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginEnd="4dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_marginTop="16dp"
+                android:hint="amount $"
+                app:suffixText="$"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/amount_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="numberDecimal"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/transfer_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/amount_til"
+                app:layout_constraintTop_toTopOf="@id/amount_til"
+                app:layout_constraintBottom_toBottomOf="@id/amount_til"
+                android:layout_marginStart="4dp"
+                android:text="Transfer"
+                android:textAllCaps="false"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>
