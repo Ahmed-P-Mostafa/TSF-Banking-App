@@ -132,6 +132,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="numberDecimal"
+                    android:text="@={vm.moneyAmount}"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -146,6 +147,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/amount_til"
                 android:layout_marginStart="4dp"
                 android:text="Transfer"
+                android:onClick="@{()-> vm.transfer()}"
                 android:textAllCaps="false"/>
 
 
