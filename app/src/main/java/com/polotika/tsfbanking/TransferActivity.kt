@@ -1,5 +1,7 @@
 package com.polotika.tsfbanking
 
+import android.content.Intent
+import android.content.Intent.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -48,13 +50,25 @@ class TransferActivity : AppCompatActivity() {
         val snackbar = Snackbar.make(binding.root,message,Snackbar.LENGTH_SHORT)
 
         if (state){
-               snackbar.addCallback(
+               /*snackbar.addCallback(
                     object : Snackbar.Callback() {
                         override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                             Log.d("TAG", "onDismissed: ")
+                            val intent = Intent(this@TransferActivity,MainActivity::class.java)
+                            intent.putExtra("STATE",true)
+                            setResult(0,intent)
                             finish()
+
+
+                            *//*intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
+                            startActivity(intent)
+                            finish()*//*
                         }
-                    })
+                    })*/
+            val intent = Intent(this@TransferActivity,MainActivity::class.java)
+            intent.putExtra("STATE",true)
+            setResult(0,intent)
+            finish()
             }
         snackbar.show()
     }

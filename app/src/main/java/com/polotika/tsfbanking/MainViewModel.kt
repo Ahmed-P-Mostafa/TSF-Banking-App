@@ -20,6 +20,7 @@ class MainViewModel :ViewModel() {
         }
 
         db.close()
+        accountsListAdapter.notifyDataSetChanged()
     }
 
     private fun getDummyAccounts(): List<Account> {
